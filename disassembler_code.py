@@ -79,9 +79,9 @@ for mc in MachineCode_arr:
         rt = regi[int(mc[11:16], 2)]; rd = regi[int(mc[16:21], 2)]; 
         shamt = int(mc[21:26], 2)
                 
-        if (op_format == 0): set.append([oprtn + ' ' + rd + ' ' + rs + ' ' + rt, -1])
-        if (op_format == 1): set.append([oprtn + ' ' + rd + ' ' + rt + ' ' + str(shamt), -1])
-        if (op_format == 2): set.append([oprtn + ' ' + rs, -1])
+        if (op_format == 0): set.append([oprtn + ' ' + rd + ' ' + rs + ' ' + rt, None])
+        if (op_format == 1): set.append([oprtn + ' ' + rd + ' ' + rt + ' ' + str(shamt), None])
+        if (op_format == 2): set.append([oprtn + ' ' + rs, None])
         # print(set)
 
     # I-type
@@ -91,9 +91,9 @@ for mc in MachineCode_arr:
 
         rs = regi[int(mc[6:11], 2)]; rt = regi[int(mc[11:16], 2)]; imm = str(binaryToDecimal(mc[16:]))
         
-        if (op_format == 1): set.append([oprtn + ' ' + rt + ' ' + rs + ' ' + imm, -1])
-        elif (op_format == 3): set.append([oprtn + ' ' + rt + ' ' + imm, -1])
-        elif (op_format == 4): set.append([oprtn + ' ' + rt + ' ' + imm + '(' + rs + ')',-1])
+        if (op_format == 1): set.append([oprtn + ' ' + rt + ' ' + rs + ' ' + imm, None])
+        elif (op_format == 3): set.append([oprtn + ' ' + rt + ' ' + imm, None])
+        elif (op_format == 4): set.append([oprtn + ' ' + rt + ' ' + imm + '(' + rs + ')',None])
         elif (op_format == 5):
             imm = int(imm)
             addr = PC + 4 * imm
@@ -133,23 +133,28 @@ result = open('assembly_code.txt', 'w')
 count = 0
 printArr = []
 
+
+
 for i in set:
     addr = iniAddr + count   # iniAddr = 4194304
-    label = 'x'
+    label = ''
     if lableTags.get(addr) is not None: label = lableTags.get(addr)
 
     sw = label + ': ' + i[0]
-    if (i[1] == -1 and label[0] != 'L'):
-        sw = i[0]
-    elif (label[0] == 'L'):
-        sw = sw + lableTags[i[1]]
+    
+    if i[1] is None:
+        if label is '':
+            sw = i[0]
     else:
-        sw = i[0] + lableTags[i[1]]
+        if label is '':
+            sw = i[0] + lableTags[i[1]]
+        else:
+            sw = sw + lableTags[i[1]]
 
-
-    result.write(sw + '\n')
-    printArr.append(sw)  
     count = count + 4        
+    result.write(sw + '\n')
+    printArr.append(sw)
+
 
 # finish
 result.close()
@@ -158,5 +163,3 @@ result.close()
 # print instructions
 for i in printArr:
     print(i)
-   
- 
