@@ -4,7 +4,7 @@
 
 Our project consists of two parts. The first part involves implementing a MIPS assembler that takes assembly code as input and produces the corresponding machine code as output. The second part consists of implementing a MIPS disassembler by producing the MIPS assembly code corresponding to the machine code given as input by the user. 
 
-##
+###
 
 ## Guidelines
 
