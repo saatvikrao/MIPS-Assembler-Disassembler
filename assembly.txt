@@ -1,0 +1,11 @@
+addi $t1 $zero 1
+addi $t2 $zero 1
+lw $s0 14($s1)
+sw $s2 29($s3)
+sll $s4 $s5 3
+beq $t1 $t2 L1
+addi $s0 $s1 2
+L1: addi $t1 $t2 1
+j L2
+sub $t3 $t4 $t5
+L2: slt $t5 $t6 $t7
