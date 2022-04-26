@@ -9,3 +9,7 @@ Our project consists of two parts. The first part involves implementing a MIPS a
 ## Guidelines
 
 final_code.py is the final program that the user needs to run. assembly.txt is an example assembly code input. The user can decide to give the desirable input inside the aseembly.txt file. So, for the project, the user needs only two files at the start of the program and as the program progresses a MachineCode.txt file is created which stores the machine code for the given input. Later on, the user is asked if they want to convert back to the assembly. Depending on their answer, machine code is given output. 
+
+#####
+
+We have also provided the user with independet converters (assembler_code.py and disassembler.py) in which the user is free to convert any assembly code to machine code or any machine code to assembly code. 
