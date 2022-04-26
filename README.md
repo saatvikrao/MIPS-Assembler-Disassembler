@@ -1,4 +1,4 @@
-# Assmebler-Disassembler
+# Assembler-Disassembler
 
 ### Contributors: Saatvik Rao, Sahil Agrawal, Medhansh Singh, Madhav Kanda 
 
